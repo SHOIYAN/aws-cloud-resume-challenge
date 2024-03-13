@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects</title>
+<style>
+    .project {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        display: inline-block;
+        width: 45%; /* Adjust as needed */
+        margin-right: 2%; /* Adjust as needed */
+        vertical-align: top; /* Aligns projects to the top */
+    }
+    .details {
+        display: none;
+        padding: 10px;
+        background-color: #f9f9f9;
+    }
+</style>
+</head>
+<body>
+
+<div class="project" onclick="toggleDetails('project1')">
+    <h3>Project 1</h3>
+    <p>Click to expand</p>
+    <div id="project1" class="details">
+        <p>Project 1 details go here...</p>
+        <a href="https://github.com/your-username/project1">View on GitHub</a>
+    </div>
+</div>
+
+<div class="project" onclick="toggleDetails('project2')">
+    <h3>Project 2</h3>
+    <p>Click to expand</p>
+    <div id="project2" class="details">
+        <p>Project 2 details go here...</p>
+        <a href="https://github.com/your-username/project2">View on GitHub</a>
+    </div>
+</div>
+
+<script>
+    function toggleDetails(id) {
+        var details = document.getElementById(id);
+        details.style.display = (details.style.display === 'block') ? 'none' : 'block';
+    }
+</script>
+</body>
+</html>
