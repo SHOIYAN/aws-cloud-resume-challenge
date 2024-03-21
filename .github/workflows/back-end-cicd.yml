@@ -1,4 +1,4 @@
-name: CI/CD for Lambda Python
+name: CI/CD for Lambda
 
 on:
   push:
@@ -6,33 +6,35 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
+    name: Deploy Lambda Function
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup Python
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
+
+      - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: '3.12'  # Use the correct Python version
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements.txt  # If you have a requirements file
 
-      - name: Test Lambda function
+      - name: Deploy Lambda function
+        env:
+          AWS_REGION: 'us-east-1'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          LAMBDA_FUNCTION_NAME: "myfunc"
         run: |
-          python -m unittest
-
-      - name: Deploy to AWS Lambda
-        uses: appleboy/lambda-action@v1
-        with:
-          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          region: 'us-west-2'
-          function_name: 'my-lambda-function'
-          handler: 'handler.lambda_handler'
-          source: '.'
+          aws lambda update-function-code \
+            --region $AWS_REGION \
+            --function-name $LAMBDA_FUNCTION_NAME \
+            --zip-file fileb://func.zip
