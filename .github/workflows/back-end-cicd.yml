@@ -22,7 +22,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.12'  # Use the correct Python version
+          python-version: '3.12'  
 
       - name: Install Python dependencies
         run: |
@@ -39,6 +39,8 @@ jobs:
             --region $AWS_REGION \
             --function-name $LAMBDA_FUNCTION_NAME \
             --zip-file fileb://func.zip
+
+
 
 
 
