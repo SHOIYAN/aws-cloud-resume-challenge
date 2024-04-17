@@ -37,4 +37,7 @@ jobs:
 
       - name: Update Lambda function
         run: |
-          aws lambda update-function-code --function-name myfunc --zip-file fileb://website/infra/lambda/func.zip
+          aws lambda update-function-code --function-name myfunc --zip-file fileb://website/infra/lambda/function.zip
+ 
+
+# .
