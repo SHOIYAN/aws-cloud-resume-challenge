@@ -32,9 +32,9 @@ jobs:
 
       - name: Package Lambda function
         run: |
-          cd website/infra/lambda/func.py
+          cd website/infra/lambda/lambda_function.py
           zip -r func.zip .
 
       - name: Update Lambda function
         run: |
-          aws lambda update-function-code --function-name myfunc --zip-file fileb://website/infra/lambda/function.zip
+          aws lambda update-function-code --function-name myfunc --zip-file fileb://website/infra/lambda/func.zip
