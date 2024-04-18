@@ -264,7 +264,7 @@
 
 const counter = document.querySelector(".counter-number");
 async function updateCounter() {
-    let response = await fetch ("https://srqvzmp3jiqspo6ak5kxmju62m0tibvb.lambda-url.us-east-1.on.aws/")
+    let response = await fetch ("https://ig6qii82c4.execute-api.us-east-1.amazonaws.com/myfunc")
     let data = await response.json();
     counter.innerHTML = `Views: ${data}`;
 
