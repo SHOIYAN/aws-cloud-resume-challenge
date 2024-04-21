@@ -1,4 +1,4 @@
-print ("Hellow world")
+print ("Hellow world 2")
 import json
 import boto3
 dynamodb = boto3.resource('dynamodb')
