@@ -18,7 +18,7 @@ def lambda_handler(event,context):
 
 
 
-# print ("Hellow world")
+print ("Hellow world")
 
 
 
