@@ -23,6 +23,11 @@ jobs:
 
         working-directory: ./website/infra/lambda
 
+      - name: Create zip file
+        run: |
+          zip -r lambda_function.zip lambda_function.py
+        working-directory: ./website/infra/lambda
+
       - name: Deploy to Lambda
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
