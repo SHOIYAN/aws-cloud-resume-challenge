@@ -20,17 +20,17 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install --no-cache-dir -r requirements.txt
-          pip install pytest  # Install pytest
+
 
         working-directory: ./website/infra/lambda
 
-      - name: Run tests
-        env:
-           PYTHONPATH: ${{ github.workspace }}/website/infra/lambda
+      - name: Test Lambda with pytest
+        shell: pwsh
 
         run: |
           cd website/infra/lambda
-          pytest
+          pytest 'test_myfunc.py'
+        working-directory: ./website/infra/lambda
 
       - name: Create zip file
         run: |
