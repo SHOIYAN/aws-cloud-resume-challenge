@@ -30,7 +30,7 @@ jobs:
         run: |
           cd website/infra/lambda
           pytest 'test_myfunc.py'
-        working-directory: ./website/infra/lambda
+        working-directory: /website/infra/lambda
 
       - name: Create zip file
         run: |
