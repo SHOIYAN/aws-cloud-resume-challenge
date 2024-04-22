@@ -26,7 +26,7 @@ jobs:
 
       - name: Test Lambda with pytest
         run: |
-          cd website/infra/lambda
+          cd ./website/infra/lambda
           pytest 'test_myfunc.py'
         working-directory: ./website/infra/lambda
 
