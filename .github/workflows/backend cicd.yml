@@ -20,12 +20,13 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install --no-cache-dir -r requirements.txt
-          pip install pytest  
+          pip install pytest  # Install pytest
 
         working-directory: ./website/infra/lambda
 
       - name: Run tests
         run: |
+          cd website/infra/lambda
           pytest
 
       - name: Create zip file
