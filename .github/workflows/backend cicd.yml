@@ -23,6 +23,10 @@ jobs:
 
         working-directory: ./website/infra/lambda
 
+      - name: Run tests
+        run: |
+          pytest
+
       - name: Create zip file
         run: |
           zip -r func.zip lambda_function.py
