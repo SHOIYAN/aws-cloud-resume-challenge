@@ -25,6 +25,9 @@ jobs:
         working-directory: ./website/infra/lambda
 
       - name: Run tests
+        env:
+           PYTHONPATH: ${{ github.workspace }}/website/infra/lambda
+
         run: |
           cd website/infra/lambda
           pytest
