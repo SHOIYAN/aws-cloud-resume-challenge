@@ -20,5 +20,3 @@ class TestLambdaHandler(unittest.TestCase):
         self.assertGreater(len(numbers), 0)  # Assert that at least one number was printed
         self.assertTrue(all(num >= 0 for num in numbers))  # Assert that all numbers are non-negative integers
 
-if __name__ == '__main__':
-    unittest.main()
