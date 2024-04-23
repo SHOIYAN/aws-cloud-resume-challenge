@@ -26,9 +26,8 @@ jobs:
 
       - name: Test Lambda with pytest
         run: |
-          
            pytest
-        working-directory: ./website/infra/lambda
+        
 
       - name: Create zip file
         run: |
