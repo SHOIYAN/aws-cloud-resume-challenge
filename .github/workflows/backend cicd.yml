@@ -25,6 +25,12 @@ jobs:
         working-directory: ./website/infra/lambda
 
 
+      - name: Install six package
+        run:
+             pip install six
+      
+
+
       - name: Run unittest
         run: |
           python -m unittest discover
