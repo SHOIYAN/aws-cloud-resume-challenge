@@ -23,24 +23,13 @@ jobs:
 
 
         working-directory: ./website/infra/lambda
-
-
-      - name: Install six package
-        run:
-             pip install six
-      
-
-
-      - name: Run unittest
-        run: |
-          python -m unittest discover
-        working-directory: ./website/infra/lambda
         
 
       - name: Test Lambda with pytest
         run: |
-           pytest
-        
+            pytest
+
+        working-directory: ./website/infra/lambda
 
       - name: Create zip file
         run: |
