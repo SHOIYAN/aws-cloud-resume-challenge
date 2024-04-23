@@ -24,6 +24,11 @@ jobs:
 
         working-directory: ./website/infra/lambda
 
+
+      - name: Run unittest
+        run: |
+          python -m unittest discover
+
       - name: Test Lambda with pytest
         run: |
            pytest
