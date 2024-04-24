@@ -30,7 +30,7 @@ jobs:
         shell: pwsh
         run: |
           cd ${{ github.workspace }}/website/infra/lambda
-          pytest 'test_myfunc.py'
+          pytest 'test_myfunc_unittest.py'
         working-directory: ./website/infra/lambda
 
       - name: Create zip file
