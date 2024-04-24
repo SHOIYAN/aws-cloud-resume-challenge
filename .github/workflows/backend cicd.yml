@@ -26,12 +26,11 @@ jobs:
         working-directory: ./website/infra/lambda
 
         
-      - name: Test Lambda with pytest
-        shell: pwsh
+      - name: Run unittests
         run: |
-          cd ${{ github.workspace }}/website/infra/lambda
-          pytest 'test_myfunc_unittest.py'
-        working-directory: ./website/infra/lambda
+          python -m unittest discover -s ./website/infra/lambda -p 'myfunc_test.py'
+      
+      
 
       - name: Create zip file
         run: |
