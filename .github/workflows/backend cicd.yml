@@ -28,10 +28,10 @@ jobs:
 
       - name: Create zip file
         run: |
-          zip -r func.zip lambda_function.py
+          zip -r func.zip myfunc.py
         working-directory: ./website/infra/lambda
 
-        
+
       - name: Deploy to Lambda
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
