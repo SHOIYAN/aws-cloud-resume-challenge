@@ -1,10 +1,4 @@
-/**
-* Template Name: Kelly
-* Updated: Jan 29 2024 with Bootstrap v5.3.2
-* Template URL: https://bootstrapmade.com/kelly-free-bootstrap-cv-resume-html-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+
 (function() {
   "use strict";
 
@@ -263,12 +257,28 @@
 // Javascript code
 
 const counter = document.querySelector(".counter-number");
-async function updateCounter() {
-    let response = await fetch ("https://ig6qii82c4.execute-api.us-east-1.amazonaws.com/myfunc")
-    let data = await response.json();
-    counter.innerHTML = `Views: ${data}`;
 
+async function updateCounter() {
+    // Check if the view count is already stored in local storage
+    let views = localStorage.getItem('views');
+    if (views === null) {
+        // Fetch the view count if it's not stored
+        let response = await fetch("https://ig6qii82c4.execute-api.us-east-1.amazonaws.com/myfunc");
+        let data = await response.json();
+        views = data;
+        localStorage.setItem('views', views); // Store the view count in local storage
+    }
+
+    // Update the counter element with the view count
+    counter.innerHTML = `Views: ${views}`;
 }
+
+// Call updateCounter when the page loads
 updateCounter();
+
+
+
+
+
 
 
