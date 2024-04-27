@@ -25,10 +25,12 @@ jobs:
           pip install --no-cache-dir -r requirements.txt
         working-directory: ./Back-end/lambda/
 
-      - name: Run tests
+      - name: Test Lambda with pytest
         run: |
-          pytest 
-        working-directory: ./Back-end/lambda/tests/
+          cd ./Back-end/lambda/
+          pytest 'test_myfunc.py'
+        working-directory: ./Back-end/lambda/
+
 
       - name: Create zip file
         run: |
