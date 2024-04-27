@@ -23,7 +23,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest
           pip install --no-cache-dir -r requirements.txt
-        working-directory: ./Back-end/lambda/test/
+        working-directory: ./Back-end/lambda/tests/
 
       - name: Run tests
         run: |
