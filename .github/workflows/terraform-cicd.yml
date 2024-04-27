@@ -20,12 +20,12 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: /Back-end/infra/
+        working-directory: ./Back-end/infra/
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: /Back-end/infra/
+        working-directory: ./Back-end/infra/
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: /Back-end/infra/
+        working-directory: ./Back-end/infra/
