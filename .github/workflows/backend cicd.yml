@@ -49,8 +49,8 @@ jobs:
 
       - name: Deploy to Lambda
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.GITACTIONS_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.GITACTIONS_SECRET_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.TERRAFORM_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
           aws lambda update-function-code --function-name myfunc --zip-file fileb://./Back-end/lambda/func.zip
