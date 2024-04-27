@@ -8,6 +8,7 @@ terraform {
 }
 
 provider "aws" {
+  shared_credentials_files  = ["C:/Users/USERS/.aws/credentials"]
   profile ="elliot"
   region = "us-east-1"
 }
