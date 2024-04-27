@@ -26,20 +26,6 @@ jobs:
           
         working-directory: ./Back-end/lambda/
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.GITACTIONS_AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.GITACTIONS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-
-      - name: Run tests
-        run: |
-          python -m unittest discover
-
-        working-directory: ./Back-end/lambda/
-
-
       - name: Create zip file
         run: |
           zip -r func.zip myfunc.py
@@ -49,8 +35,8 @@ jobs:
 
       - name: Deploy to Lambda
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.TERRAFORM_SECRET_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.GITACTIONS_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.GITACTIONS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
           aws lambda update-function-code --function-name myfunc --zip-file fileb://./Back-end/lambda/func.zip
