@@ -29,7 +29,7 @@ jobs:
         run: |
           
           pytest 'test_myfunc.py'
-        working-directory: Back-end/lambda/
+        working-directory: ./Back-end/lambda/
 
 
       - name: Create zip file
