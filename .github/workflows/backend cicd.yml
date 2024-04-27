@@ -27,8 +27,8 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest tests/
-        
+          pytest 
+        working-directory: ./Back-end/lambda/tests/
 
       - name: Create zip file
         run: |
