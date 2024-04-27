@@ -23,13 +23,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest
           pip install --no-cache-dir -r requirements.txt
-        working-directory: ./website/infra/lambda
+        working-directory: ./Back-end/lambda
 
 
       - name: Create zip file
         run: |
           zip -r func.zip myfunc.py
-        working-directory: ./website/infra/lambda
+        working-directory: ./Back-end/lambda
+      
 
 
       - name: Deploy to Lambda
@@ -38,4 +39,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.GITACTIONS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: 'us-east-1'
         run: |
-          aws lambda update-function-code --function-name myfunc --zip-file fileb://./website/infra/lambda/func.zip
+          aws lambda update-function-code --function-name myfunc --zip-file fileb://./Back-end/lambda/func.zip
