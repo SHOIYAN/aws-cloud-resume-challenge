@@ -26,8 +26,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Test Lambda 
-        run: |
-            cd aws-cloud-resume-challenge\Back-end\lambda
+        run: |         
             python -m unittest discover
         working-directory: ./Back-end/lambda
 
