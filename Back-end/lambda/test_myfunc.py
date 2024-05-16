@@ -1,34 +1,29 @@
 import unittest
-from unittest.mock import patch
-from io import StringIO
-import json
+from unittest.mock import MagicMock
+from myfunc import lambda_handler
 
-# Mocking boto3 DynamoDB client
-@patch('boto3.resource')
 class TestLambdaHandler(unittest.TestCase):
 
-    @patch('sys.stdout', new_callable=StringIO)
-    def test_lambda_handler_prints_numbers(self, mock_stdout, mock_dynamodb_resource):
-        # Mock DynamoDB Table
-        mock_table = mock_dynamodb_resource().Table.return_value
+    def test_lambda_handler(self):
+        # Create a mock DynamoDB table
+        mock_table = MagicMock()
         mock_table.get_item.return_value = {'Item': {'id': '0', 'views': 1}}
 
-        # Call the lambda_handler function
-        from myfunc import lambda_handler
-        event = {}
-        context = {}
-        result = lambda_handler(event, context)
+        # Mock the DynamoDB resource and table
+        with unittest.mock.patch('boto3.resource') as mock_resource:
+            mock_resource.return_value.Table.return_value = mock_table
 
-        # Get the output from stdout
-        output = mock_stdout.getvalue().strip()
+            # Call the lambda_handler function
+            event = {}
+            context = {}
+            result = lambda_handler(event, context)
 
-        # Check if the output contains the numbers
-        numbers = [int(num) for num in output.split('\n') if num.isdigit()]
-        self.assertGreater(len(numbers), 0)  # Assert that at least one number was printed
-        self.assertTrue(all(num >= 0 for num in numbers))  # Assert that all numbers are non-negative integers
+            # Check that the result is as expected
+            self.assertEqual(result, 2)  # Assuming the function increments 'views' by 1
 
-        # Check the result returned by the function
-        self.assertEqual(result, 2)  # Assuming the function increments 'views' by 1
+            # Check that the DynamoDB table methods were called as expected
+            mock_table.get_item.assert_called_once_with(Key={'id': '0'})
+            mock_table.put_item.assert_called_once_with(Item={'id': '0', 'views': 2})
 
 if __name__ == '__main__':
     unittest.main()
