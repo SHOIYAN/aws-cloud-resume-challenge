@@ -25,6 +25,15 @@ jobs:
           aws-secret-access-key: ${{ secrets.GITACTIONS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
+
+      - name: Install dependencies
+        run: |
+            cd Back-end\lambda
+            python -m pip install --upgrade pip           
+            pip install -r requirements.txt
+        working-directory: Back-end\lambda
+
+
       - name: Test Lambda 
         run: |         
             python -m unittest discover
