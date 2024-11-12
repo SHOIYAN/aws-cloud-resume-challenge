@@ -36,7 +36,7 @@ jobs:
 
       - name: Test Lambda 
         run: |         
-            python -m unittest discover
+            pytest
         working-directory: ./Back-end/lambda
 
       - name: Create zip file
